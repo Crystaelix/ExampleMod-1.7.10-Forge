@@ -84,10 +84,6 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 loom {
-	// The log4j config file contained in this template is Minecraft default logging config, and does not contain debug information
-	// Remove the following line and update the runtime log4j for Loom's default logging output
-	log4jConfigs.setFrom "log4j2.xml"
-
 	silentMojangMappingsLicense()
 	legacyForge {
 		// Specify early mixin json configs here, requires MixinConBooter
@@ -111,9 +107,6 @@ loom {
 }
 
 dependencies {
-	// Uncomment the following line for Loom's default logging output
-	//implementation "org.apache.logging.log4j:log4j-core:${log4j_version}"
-
 	// Minecraft dependencies, required
 	minecraft "com.mojang:minecraft:1.7.10"
 	// While it is possible to only use stable-12 mappings here, it is not recommended as most mods depends on Forge default mappings in a development environment
