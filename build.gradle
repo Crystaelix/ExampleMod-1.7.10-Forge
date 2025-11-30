@@ -1,5 +1,6 @@
 plugins {
 	id "com.crystaelix.loom" version "1.13-SNAPSHOT"
+	id "ploceus" version "1.13-SNAPSHOT"
 	id "eclipse"
 	id "idea"
 	id "maven-publish"
@@ -59,6 +60,10 @@ repositories {
 	}
 }
 
+ploceus {
+	disableLibraryUpgrades()
+}
+
 version = mod_version
 group = mod_group
 def archivesName = "${mod_name}-1.7.10"
@@ -114,6 +119,10 @@ dependencies {
 		mcp "de.oceanlabs.mcp:mcp_stable:${mcp_version}"
 		mcp "net.minecraftforge:forge:${forge_version}:userdev"
 	}
+	// Apply ploceus patches
+	exceptions ploceus.raven(raven_build)
+	signatures ploceus.sparrow(sparrow_build)
+	nests ploceus.nests(nests_build)
 	legacyForge "net.minecraftforge:forge:${forge_version}:universal"
 
 	// Mixin dependencies, use if mixin is required
